@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <script type="text/javascript" src="lib/underscore-min.js"></script>
+    <script type="text/javascript" src="lib/store.min.js"></script>
+    <script>
+        // check for store.js
+        init()
+        function init() {
+            if (!store.enabled) {
+                alert('Local storage is not supported by your browser. Please disabled "Private Mode", or upgrade to a modern browser');
+                return
+            }
+        }
+    </script>
+    <script type="text/javascript" src="../build/enchant.js"></script>
+    <script type="text/javascript" src="poipoi.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="PoipoiBoard/CommandLayer/Command.js"></script>
+    <script type="text/javascript" src="PoipoiBoard/ControlLayer/ControlLayer.js"></script>
+    <script type="text/javascript" src="PoipoiBoard/ControlLayer/JobQueueCompiler.js"></script>
+    <script type="text/javascript" src="PoipoiBoard/CommandLayer/CommandLayer.js"></script>
+    <script type="text/javascript" src="PoipoiBoard/JobLayer/JobFrame.js"></script>
+    <script type="text/javascript" src="PoipoiBoard/JobLayer/JobLayer.js"></script>
+    <script type="text/javascript" src="ProgramBoard/ProgramLayer.js"></script>
+    <script type="text/javascript" src="Scene/TitleScene.js"></script>
+    <script type="text/javascript" src="Scene/GameScene.js"></script>
+    <script type="text/javascript" src="Scene/ResultScene.js"></script>
+    <script type="text/javascript" src="Scene/EndingScene.js"></script>
+    <script type="text/javascript" src="Model/MapManager.js"></script>
+    <script type="text/javascript" src="Model/Collision.js"></script>
+    <script type="text/javascript" src="Model/User.js"></script>
+    <script type="text/javascript" src="Model/StageManager.js"></script>
+    <script type="text/javascript" src="Screen/ScreenLayer.js"></script>
+    <script type="text/javascript" src="Screen/Charactor/Charactor.js"></script>
+    <script type="text/javascript" src="Screen/Charactor/PlayerLayer.js"></script>
+    <script type="text/javascript" src="Screen/Charactor/Player.js"></script>
+    <script type="text/javascript" src="Screen/Charactor/EnemyLayer.js"></script>
+    <script type="text/javascript" src="Screen/Charactor/Enemy.js"></script>
+    <script type="text/javascript" src="Screen/Charactor/Goal.js"></script>
+    <script type="text/javascript" src="Tutorial/TutorialLayer.js"></script>
+    <script type="text/javascript" src="Screen/Weather/WeatherLayer.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- <div id="enchant-stage"></div> -->
+</body>
+</html>
