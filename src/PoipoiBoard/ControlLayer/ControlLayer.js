@@ -19,7 +19,35 @@ var ControlLayer = (function() {
             backGroundSpr.image = game.assets[poipoi.imgPaths['poipoi_board_back']];
             backGroundSpr.scaleX = 1.1;
             group.addChild(backGroundSpr);
-            return backGroundSpr;
+
+            var borderHorizon = new Sprite(559, 11);
+            borderHorizon.x = -15;
+            borderHorizon.y = 115;
+            borderHorizon.image = game.assets[poipoi.imgPaths['borderHorizon']];
+            borderHorizon.scaleX = 1.15;
+            group.addChild(borderHorizon);
+
+            var borderVertical = new Sprite(20, 293);
+            borderVertical.x = 270;
+            borderVertical.y = 80;
+            borderVertical.image = game.assets[poipoi.imgPaths['borderVertical']];
+            borderVertical.scaleX = 0.8;
+            borderVertical.scaleY = 0.7;
+            group.addChild(borderVertical);
+        };
+
+        my.setFuncMarkSpr = function(game, group) {
+            var funcMarkSpr1 = new Sprite(43,36);
+            funcMarkSpr1.x = 300;
+            funcMarkSpr1.y = 160;
+            funcMarkSpr1.image = game.assets[poipoi.imgPaths['MarkFunc1']];
+            group.addChild(funcMarkSpr1);
+
+            var funcMarkSpr2 = new Sprite(43,36);
+            funcMarkSpr2.x = 300;
+            funcMarkSpr2.y = 260;
+            funcMarkSpr2.image = game.assets[poipoi.imgPaths['MarkFunc2']];
+            group.addChild(funcMarkSpr2);
         };
 
         /**
@@ -76,7 +104,8 @@ var ControlLayer = (function() {
             console.log('jobQueue : ',group.getJobQueue());
         };
 
-        var backGroundSpr = my.setBackGroundSpr(game, group);
+        my.setBackGroundSpr(game, group);
+        my.setFuncMarkSpr(game, group);
 
         var jobLayer = JobLayer.init(-50, 135, poipoi.MAIN_JOB_FRAME_ROWS, poipoi.MAIN_JOB_FRAME_COLUMNS);
         group.addChild(jobLayer);
@@ -87,7 +116,7 @@ var ControlLayer = (function() {
         var jobLayerFunc2 = JobLayer.init(360, 235, 3, 1, JobFrame.TYPE.FUNCTION);
         group.addChild(jobLayerFunc2);
 
-        var commandLayer = CommandLayer.init(-50,0);
+        var commandLayer = CommandLayer.init(-57,0);
         group.addChild(commandLayer);
 
         var programLayer = ProgramLayer.init(-420,4);
