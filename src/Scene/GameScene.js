@@ -59,16 +59,16 @@ var GameScene = (function(){
             };
             var clear = function clear(e) {
                 var user = User.init();
-                var jobQueue = controlLayer.jobLayer.getJobQueue();
-                user.setScore(jobQueue.length);
+                var jobQueue = controlLayer.getJobQueue();
+                user.setScore(jobQueue.compiled.length);
 
                 screenLayer.clear();
             };
             
-            game.on(poipoi.event.actionStart, doAction);
-            game.on(poipoi.event.actionEnd, doAction);
-            game.on(poipoi.event.actionNotClear, notClear);
-            game.on(poipoi.event.actionClear, clear);
+            screenLayer.playerLayer.on(poipoi.event.actionStart, doAction);
+            screenLayer.playerLayer.player.on(poipoi.event.actionEnd, doAction);
+            screenLayer.playerLayer.player.on(poipoi.event.actionNotClear, notClear);
+            screenLayer.playerLayer.player.on(poipoi.event.actionClear, clear);
 
             // set public methods
             scene.doAction = doAction;

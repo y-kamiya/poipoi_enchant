@@ -82,23 +82,26 @@ var Player = (function Player() {
         },
 
         end: function actionEnd() {
+            var player = this;
             var event = new enchant.Event(poipoi.event.actionEnd);
             this.tl.then(function() {
-                enchant.Game.instance.dispatchEvent(event);
+                player.dispatchEvent(event);
             });
         },
 
         notClear: function notClear() {
+            var player = this;
             var event = new enchant.Event(poipoi.event.actionNotClear);
             this.tl.delay(10).then(function() {
-                enchant.Game.instance.dispatchEvent(event);
+                player.dispatchEvent(event);
             });
         },
 
         clear: function clear() {
+            var player = this;
             var event = new enchant.Event(poipoi.event.actionClear);
             this.tl.then(function() {
-                enchant.Game.instance.dispatchEvent(event);
+                player.dispatchEvent(event);
             });
         },
     };

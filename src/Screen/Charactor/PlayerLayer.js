@@ -10,11 +10,13 @@ var PlayerLayer = (function PlayerLayer() {
 
         playerLayer.addChild(player);
 
-        player.on(enchant.Event.TOUCH_START, my.onActionStart);
+        player.on(enchant.Event.TOUCH_START, function() {
+            var event = new enchant.Event(poipoi.event.actionStart);
+            playerLayer.dispatchEvent(event);
+        });
 
         var doActionList = function doActionList(actionList) {
             _.each(actionList, function(action) {
-                //player.tl.then(player[action]);
                 player.tl.then(function() {
                     player.doAction(action);
                 });
@@ -82,11 +84,6 @@ var PlayerLayer = (function PlayerLayer() {
             notClear       : notClear,
             clear          : clear,
         });
-    };
-
-    my.onActionStart = function onActionStart(e) {
-        var event = new enchant.Event(poipoi.event.actionStart);
-        enchant.Game.instance.dispatchEvent(event);
     };
 
 

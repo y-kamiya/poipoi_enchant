@@ -40,9 +40,12 @@ window.onload = function() {
         , poipoi.imgPaths['tamago']
         , poipoi.imgPaths['star']
         , poipoi.imgPaths['weed']
+        , poipoi.imgPaths['end_board']
+        , poipoi.imgPaths['player_end']
 
         , poipoi.mapPaths['map1-1_sunny']
         , poipoi.mapPaths['map1-2_sunny']
+        , poipoi.mapPaths['map1-2_rainy']
         , poipoi.mapPaths['map1-3_sunny']
     );
 
@@ -52,13 +55,11 @@ window.onload = function() {
         var user = User.init();
         user.set('currentStageIndex', 1);
 
-        var mapName = MapManager.getCurrentMapName();
-        var titleScene = GameScene.init(mapName);
-        //var titleScene = TitleScene.init();
+        var titleScene = TitleScene.init();
         game.pushScene(titleScene);
     };
 
 
-    //game.start();
-    game.debug();
+    game.start();
+    //game.debug();
 };

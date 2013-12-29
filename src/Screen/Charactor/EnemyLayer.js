@@ -25,11 +25,6 @@ var EnemyLayer = (function EnemyLayer() {
         });
     };
 
-    my.onActionStart = function onActionStart(e) {
-        var event = new enchant.Event(poipoi.event.actionStart);
-        enchant.Game.instance.dispatchEvent(event);
-    };
-
     my.reset = function reset() {
         _.each(this.enemyList, function(enemy) {
             enemy.reset();

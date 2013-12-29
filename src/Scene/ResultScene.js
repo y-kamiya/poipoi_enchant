@@ -3,12 +3,6 @@ var ResultScene = (function ResultScene() {
 		that = {};
     my.sceneColor = 'rgb(132, 210, 219)';
 
-	my.onTapNextButton = function onTapNextButton() {
-        var game = enchant.Game.instance;
-		var	gameScene = GameScene.init();
-		game.replaceScene(gameScene);
-	};
-
 	that.init = function init() {
         var game  = enchant.Game.instance;
 		var	scene = new Scene();
@@ -27,10 +21,7 @@ var ResultScene = (function ResultScene() {
             scene.addChild(my.makeFlowerSpr(i));
         }
 
-        var tamago = new Sprite(R.TAMAGO.WIDTH, R.TAMAGO.HEIGHT);
-        tamago.image = game.assets[poipoi.imgPaths.tamago];
-        tamago.moveTo(R.TAMAGO.X, R.TAMAGO.Y);
-        scene.addChild(tamago);
+        scene.addChild(my.makeSpr('tamago', 1));
 
         for (var i = 1; i <= 2; i++) {
             scene.addChild(my.makeSpr('star', i));
@@ -103,6 +94,12 @@ var ResultScene = (function ResultScene() {
         sprite.tl.then(function() { sprite.frame++; }).delay(15).loop();
         return sprite;
     };
+
+	my.onTapNextButton = function onTapNextButton() {
+        var game = enchant.Game.instance;
+		var	gameScene = GameScene.init();
+		game.replaceScene(gameScene);
+	};
 
 
 	return that;

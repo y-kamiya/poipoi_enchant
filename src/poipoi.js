@@ -15,6 +15,7 @@ var poipoi = (function(){
         'gameScene'            : '../img/GameScene/',
         'weather'              : '../img/weather/',
         'resultScene'          : '../img/ResultScene/',
+        'EndingScene'          : '../img/EndingScene/',
     };
 	that.mapDir = '../map/';
 
@@ -36,6 +37,7 @@ var poipoi = (function(){
         'earth_tile'            : that.imgDir.map + 'earth.png',
         'player_clear01'        : that.imgDir.chara + 'hiyoko_clear01.png',
         'player_false01'        : that.imgDir.chara + 'hiyoko_false01.png',
+        'player_end'            : that.imgDir.chara + 'hiyoko_end.png',
         'player_walk01'         : that.imgDir.chara + 'walk01.png',
         'player_walk02'         : that.imgDir.chara + 'walk02.png',
         'player_walk03'         : that.imgDir.chara + 'walk03.png',
@@ -53,15 +55,17 @@ var poipoi = (function(){
         'ground'                : that.imgDir.resultScene + 'ground.png',
         'next'                  : that.imgDir.resultScene + 'next.png',
         'result'                : that.imgDir.resultScene + 'result.png',
-        'tamago'                : that.imgDir.resultScene + 'tamago01.png',
+        'tamago'                : that.imgDir.resultScene + 'tamago.png',
         'star'                  : that.imgDir.resultScene + 'star.png',
         'weed'                  : that.imgDir.resultScene + 'weed.png',
+        'end_board'             : that.imgDir.EndingScene + 'end_board.png',
     };
 
 	that.mapPaths = {};
     for (var i = 1; i < 5; i++) {
         for (var j = 1; j < 5; j++) {
             that.mapPaths['map' + i + '-' + j + '_sunny'] = that.mapDir + 'map' + i + '-' + j + '_sunny.tmx';
+            that.mapPaths['map' + i + '-' + j + '_rainy'] = that.mapDir + 'map' + i + '-' + j + '_rainy.tmx';
         }
     }
 
@@ -166,14 +170,16 @@ var poipoi = (function(){
             Y      : 570,
         },
         TAMAGO : {
-            WIDTH  : 250,
-            HEIGHT : 400,
-            X      : 370,
-            Y      : 200,
+            WIDTH  : 300,
+            HEIGHT : 349,
+            1 : {
+                X      : 370,
+                Y      : 200,
+            },
         },
         STAR : {
             WIDTH  : 300,
-            HEIGHT : 350,
+            HEIGHT : 349,
             1 : {
                 X      : 150,
                 Y      : 230,
@@ -190,6 +196,19 @@ var poipoi = (function(){
         BEST_SCORE : {
             X : 415,
             Y : 685,
+        },
+    };
+
+    that.ENDING = {
+        BOARD : {
+            WIDTH  : 1024,
+            HEIGHT : 768,
+        },
+        CHARA : {
+            WIDTH  : 505,
+            HEIGHT : 388,
+            X      : 250,
+            Y      : 70,
         },
     };
 

@@ -8,7 +8,9 @@ var EndingScene = (function EndingScene() {
         var titleScene = TitleScene.init();
         var user = User.init();
         user.set('currentStageIndex', 1);
-		game.replaceScene(titleScene);
+        endBoard.tl.fadeOut(30).then(function(){
+            game.replaceScene(titleScene);
+        });
 	};
 
 	that.init = function init() {
@@ -16,12 +18,26 @@ var EndingScene = (function EndingScene() {
 		var	scene = new Scene();
 		scene.backgroundColor = my.sceneColor;
 
-        var label = new Label();
-        label.text = 'To Title';
-        label.font = '64px Marker Felt';
-        scene.addChild(label);
+        var chara = new Sprite(poipoi.ENDING.CHARA.WIDTH, poipoi.ENDING.CHARA.HEIGHT);
+        chara.image = game.assets[poipoi.imgPaths['player_end']];
+        chara.moveTo(poipoi.ENDING.CHARA.X, poipoi.ENDING.CHARA.Y);
+        chara.tl.then(function() { chara.frame++; }).delay(15).loop();
+        scene.addChild(chara);
 
-        label.on(enchant.Event.TOUCH_START, my.onTap);
+        var endBoard = new Sprite(poipoi.ENDING.BOARD.WIDTH, poipoi.ENDING.BOARD.HEIGHT);
+        endBoard.image = game.assets[poipoi.imgPaths['end_board']];
+        scene.addChild(endBoard);
+
+        scene.on(enchant.Event.TOUCH_START, function() {
+            var titleScene = TitleScene.init();
+            var user = User.init();
+            user.set('currentStageIndex', 1);
+            chara.tl.fadeOut(30);
+            endBoard.tl.fadeOut(30).then(function(){
+                game.replaceScene(titleScene);
+            });
+        });
+
         return scene;
     };
 

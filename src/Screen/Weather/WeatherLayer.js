@@ -15,6 +15,7 @@ var WeatherLayer = (function(){
         var group = new Group();
         var my = {};
 
+        weather = that.WEATHER[weather.toUpperCase()];
         group.cloudSprSize = {'width':621, 'height':128};
         group.sunSprSize = {'width':747, 'height':705};
 

@@ -10,7 +10,9 @@ var ScreenLayer = (function ScreenLayer() {
         screenLayer.y = poipoi.SCREEN.OFFSET_Y;
 
         // weather
-        var weatherLayer = WeatherLayer.init(0, -screenLayer.y, WeatherLayer.WEATHER.RAINY);
+        var user = User.init();
+        var defaultWeather = StageManager.getDefaultWeather(user.get('currentDifficulty'), user.get('currentStageIndex'));
+        var weatherLayer = WeatherLayer.init(0, -screenLayer.y, defaultWeather);
         screenLayer.addChild(weatherLayer);
 
 		// map 

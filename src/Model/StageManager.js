@@ -8,15 +8,15 @@ var StageManager = (function StageManager() {
             'stageMax' : 3,
             1 : {
                 'defaultWeather' : 'sunny',
-                'bestScore'      : 5,
+                'bestScore'      : 4,
             },
             2 : {
-                'defaultWeather' : 'sunny',
-                'bestScore'      : 13,
+                'defaultWeather' : 'rainy',
+                'bestScore'      : 11,
             },
             3 : {
                 'defaultWeather' : 'sunny',
-                'bestScore'      : 8,
+                'bestScore'      : 12,
             },
         },
     };
