@@ -97,11 +97,12 @@ var JobLayer = (function(){
          * @return bool
          */
          my.removeJobSpr = function(group, jobSpr) {
-            if (my.jobSprs.length < jobSpr.id) {
+            var jobSprId = jobSpr.id;
+            if (my.jobSprs.length < jobSprId) {
                 return false;
             }
-            my.jobSprs.splice(jobSpr.Id, 1);
             group.removeChild(jobSpr);
+            my.jobSprs.splice(jobSprId, 1);
             return true;
          };
 
