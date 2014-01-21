@@ -20,6 +20,8 @@ var Charactor = (function Charactor() {
             getPosition           : _.bind(my.getPosition           , charactor),
             getCurrentTileCoord   : _.bind(my.getCurrentTileCoord   , charactor),
             getNextTileCoord      : _.bind(my.getNextTileCoord      , charactor),
+            faceToRight           : _.bind(my.faceToRight           , charactor),
+            faceToLeft            : _.bind(my.faceToLeft            , charactor),
         });
     };
 
@@ -59,6 +61,13 @@ var Charactor = (function Charactor() {
             x : Math.floor(position.x / poipoi.MAP.TILE_WIDTH),
             y : Math.floor(position.y / poipoi.MAP.TILE_HEIGHT),
         };
+    };
+    
+    my.faceToRight = function faceToRight() {
+        this.scaleX = Math.abs(this.scaleX);
+    };
+    my.faceToLeft = function faceToLeft() {
+        this.scaleX = (-1) * Math.abs(this.scaleX);
     };
 
 

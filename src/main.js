@@ -62,6 +62,6 @@ window.onload = function() {
     };
 
 
-    game.start();
-    //game.debug();
+    //game.start();
+    game.debug();
 };

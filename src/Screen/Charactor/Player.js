@@ -1,8 +1,12 @@
 var Player = (function Player() {
 
-    var that = {},
-        my = {},
-        acions = {};
+    var that   = {};
+    var my     = {};
+    var acions = {};
+
+    // private constant
+    my.SCALE = 0.4;
+    my.FRAME = 0.07;
 
     that.initByObjectData = function initByObjectData(imgName, objectData) {
         var initialPosition = {
@@ -18,10 +22,10 @@ var Player = (function Player() {
         var player = Charactor.init(imgName, initialPosition);
         player.width = poipoi.player.width;
         player.height = poipoi.player.height;
-        player.scale(0.4);
+        player.scale(my.SCALE);
         
         player.on(enchant.Event.ENTER_FRAME, function() {
-            player.frame +=0.07;
+            player.frame += my.FRAME;
         });
 
         // set public methods
@@ -53,12 +57,16 @@ var Player = (function Player() {
     var actions = {
 
         go: function go() {
-            this.tl.moveBy(poipoi.MAP.TILE_WIDTH * 0.75, 0, 10)
+            var player = this;
+            this.tl.then(function() { player.faceToRight(); }).delay(10)
+                   .moveBy(poipoi.MAP.TILE_WIDTH * 0.75, 0, 10)
                    .moveBy(poipoi.MAP.TILE_WIDTH * 0.25, 0, 10)
         },
 
         back: function back() {
-            this.tl.moveBy(-poipoi.MAP.TILE_WIDTH * 0.75, 0, 10)
+            var player = this;
+            this.tl.then(function() { player.faceToLeft(); }).delay(10)
+                   .moveBy(-poipoi.MAP.TILE_WIDTH * 0.75, 0, 10)
                    .moveBy(-poipoi.MAP.TILE_WIDTH * 0.25, 0, 10)
         },
 
