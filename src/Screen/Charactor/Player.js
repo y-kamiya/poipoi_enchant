@@ -19,6 +19,10 @@ var Player = (function Player() {
         player.width = poipoi.player.width;
         player.height = poipoi.player.height;
         player.scale(0.4);
+        
+        player.on(enchant.Event.ENTER_FRAME, function() {
+            player.frame +=0.07;
+        });
 
         // set public methods
         return _.extend(player, {
