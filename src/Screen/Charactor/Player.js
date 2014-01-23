@@ -5,7 +5,6 @@ var Player = (function Player() {
     var acions = {};
 
     // private constant
-    my.SCALE = 0.4;
     my.FRAME = 0.07;
 
     that.initByObjectData = function initByObjectData(imgName, objectData) {
@@ -13,6 +12,7 @@ var Player = (function Player() {
             x : parseInt(objectData.player.x),
             y : parseInt(objectData.player.y),
         };
+        console.log('x: ' + initialPosition.x + ' y: ' + initialPosition.y);
         return that.init(imgName, initialPosition);
     };
 
@@ -20,9 +20,8 @@ var Player = (function Player() {
     that.init = function init(imgName, initialPosition) {
 
         var player = Charactor.init(imgName, initialPosition);
-        player.width = poipoi.player.width;
-        player.height = poipoi.player.height;
-        player.scale(my.SCALE);
+        player.width  = poipoi.PLAYER.WIDTH;
+        player.height = poipoi.PLAYER.HEIGHT;
         
         player.on(enchant.Event.ENTER_FRAME, function() {
             player.frame += my.FRAME;
@@ -31,16 +30,6 @@ var Player = (function Player() {
         // set public methods
         return _.extend(player, {
             doAction   : _.bind(my.doAction      , player),
-            /*
-            go         : _.bind(actions.go       , player),
-            back       : _.bind(actions.back     , player),
-            jump       : _.bind(actions.jump     , player),
-            backjump   : _.bind(actions.backjump , player),
-            down       : _.bind(actions.down     , player),
-            end        : _.bind(actions.end      , player),
-            notClear   : _.bind(actions.notClear , player),
-            clear      : _.bind(actions.clear    , player),
-           */
         });
     };
 

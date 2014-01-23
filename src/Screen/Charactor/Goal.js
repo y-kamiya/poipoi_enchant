@@ -23,9 +23,8 @@ var Goal = (function Goal() {
     my.initialize = function initialize(imgName, initialPosition) {
         this.width = poipoi.GOAL.WIDTH;
         this.height = poipoi.GOAL.HEIGHT;
-        this.scale(0.75);
         // TODO もっとよい座標の取り方考えるべき
-        this.moveTo(initialPosition.x, initialPosition.y - poipoi.GOAL.HEIGHT + poipoi.player.height - poipoi.MAP.TILE_HEIGHT);
+        this.moveTo(initialPosition.x, initialPosition.y - poipoi.GOAL.HEIGHT + poipoi.PLAYER.HEIGHT);
     };
 
     return that;

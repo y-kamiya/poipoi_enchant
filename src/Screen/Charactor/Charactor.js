@@ -28,8 +28,8 @@ var Charactor = (function Charactor() {
     my.initialize = function initialize(imgName, initialPosition) {
         var game = enchant.Game.instance;
         this.image = game.assets[poipoi.imgPaths[imgName]];
-        this.originX = 0;
-        this.originY = 0;
+        //this.originX = 0;
+        //this.originY = 0;
         this.moveTo(initialPosition.x, initialPosition.y);
     };
 

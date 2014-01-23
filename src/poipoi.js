@@ -44,7 +44,7 @@ var poipoi = (function(){
         'enemy'                 : that.imgDir.chara + 'enemy.png',
         'clear'                 : that.imgDir.clearMessage + 'clear.png',
         'not_clear'             : that.imgDir.clearMessage + 'not_clear.png',
-        'goal'                  : that.imgDir.gameScene + 'goal.gif',
+        'goal'                  : that.imgDir.gameScene + 'goal.png',
         'tutorial_back'         : that.imgDir.gameScene + 'tutorial_back.png',
         'finger'                : that.imgDir.poipoiBoard + 'finger.png',
         'borderHorizon'         : that.imgDir.poipoiBoard + 'border_horizon.png',
@@ -88,9 +88,9 @@ var poipoi = (function(){
 		OFFSET_Y     : 30,
 	};
 
-    that.player = {
-		width       : 200,
-		height      : 215,
+    that.PLAYER = {
+		WIDTH       : 80,
+		HEIGHT      : 86.4,
     };
 
     that.ENEMY = {
@@ -99,8 +99,8 @@ var poipoi = (function(){
     };
 
     that.GOAL = {
-        WIDTH       : 175,
-        HEIGHT      : 255,
+        WIDTH       : 130.5,
+        HEIGHT      : 193.5,
     };
 
     that.SCREEN = {
