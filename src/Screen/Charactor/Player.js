@@ -20,6 +20,7 @@ var Player = (function Player() {
     that.init = function init(imgName, initialPosition) {
 
         var player = Charactor.init(imgName, initialPosition);
+        var uper   = _.clone(player);
         player.width  = poipoi.PLAYER.WIDTH;
         player.height = poipoi.PLAYER.HEIGHT;
         
@@ -30,6 +31,7 @@ var Player = (function Player() {
         // set public methods
         return _.extend(player, {
             doAction   : _.bind(my.doAction      , player),
+            reset      : _.bind(my.reset         , player, uper),
         });
     };
 
@@ -41,6 +43,11 @@ var Player = (function Player() {
         });
         // move charactor on screen
         actions[action].call(this);
+    };
+    
+    my.reset = function reset(uper) {
+        uper.reset();
+        this.faceToRight();
     };
 
     var actions = {
@@ -60,12 +67,16 @@ var Player = (function Player() {
         },
 
         goJump: function jump() {
-            this.tl.moveBy(poipoi.MAP.TILE_WIDTH * 0.75, -poipoi.MAP.TILE_HEIGHT * 1.2, 10)
+            var player = this;
+            this.tl.then(function() { player.faceToRight(); }).delay(10)
+                   .moveBy(poipoi.MAP.TILE_WIDTH * 0.75, -poipoi.MAP.TILE_HEIGHT * 1.2, 10)
                    .moveBy(poipoi.MAP.TILE_WIDTH * 0.25,  poipoi.MAP.TILE_HEIGHT * 0.2, 10)
         },
 
         backJump: function backjump() {
-            this.tl.moveBy(-poipoi.MAP.TILE_WIDTH * 0.75, -poipoi.MAP.TILE_HEIGHT * 1.2, 10)
+            var player = this;
+            this.tl.then(function() { player.faceToLeft(); }).delay(10)
+                   .moveBy(-poipoi.MAP.TILE_WIDTH * 0.75, -poipoi.MAP.TILE_HEIGHT * 1.2, 10)
                    .moveBy(-poipoi.MAP.TILE_WIDTH * 0.25,  poipoi.MAP.TILE_HEIGHT * 0.2, 10)
         },
 
