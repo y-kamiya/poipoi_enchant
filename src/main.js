@@ -23,7 +23,7 @@ window.onload = function() {
         , poipoi.imgPaths['player_clear']
         , poipoi.imgPaths['player_false']
         , poipoi.imgPaths['player_walk']
-        , poipoi.imgPaths['enemy']
+        , poipoi.imgPaths['worm']
         , poipoi.imgPaths['clear']
         , poipoi.imgPaths['not_clear']
         , poipoi.imgPaths['goal']
