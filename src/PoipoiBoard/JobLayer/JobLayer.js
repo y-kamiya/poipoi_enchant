@@ -22,6 +22,10 @@ var JobLayer = (function(){
 
         my.jobQueueMax = my.jobFrameRows * my.jobFrameColumns;
 
+        my.currentJobId = -1;
+
+        my.jobFlash = null;
+
         my.getJobFramePosition = function(jobFrameId) {
             return {
                 'x' : (JobFrame.size.width + my.jobFrameMargin.x) * parseInt(jobFrameId % my.jobFrameRows),
@@ -38,6 +42,12 @@ var JobLayer = (function(){
                 group.addChild(jobFrameSpr);
             }
             return my.jobFrameSprs;
+        };
+
+        my.setJobFlash = function(x, y) {
+            my.jobFlash = JobFlash.makeSprite(x, y);
+            my.jobFlash.opacity = 0.3;
+            group.addChild(my.jobFlash);
         };
 
         /**
@@ -153,6 +163,36 @@ var JobLayer = (function(){
 
         group.getJobQueue = function() {
             return my.jobQueue;
+        };
+
+        group.updateCurrentJobId = function() {
+            my.currentJobId += 1;
+            if (my.currentJobId >= my.jobQueue.length) {
+                my.currentJobId = -1;
+                my.resetFlashJob();
+                return false;
+            }
+            return true;
+        };
+
+        group.getCurrentJob = function() {
+            return my.jobQueue[my.currentJobId];
+        };
+
+        group.flashCurrentJob = function() {
+            my.resetFlashJob();
+            var x = my.jobFrameSprs[my.currentJobId].x;
+            var y = my.jobFrameSprs[my.currentJobId].y;
+            my.setJobFlash(x, y);
+        };
+
+        my.resetFlashJob = function() {
+            if (!my.jobFlash) {
+                return false;
+            }
+            my.jobFlash.parentNode.removeChild(my.jobFlash);
+            my.jobFlash = null;
+            return true;
         };
 
         return (function(){

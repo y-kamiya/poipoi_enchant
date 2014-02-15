@@ -14,6 +14,9 @@ var ScreenLayer = (function ScreenLayer() {
         var defaultWeather = StageManager.getDefaultWeather(user.get('currentDifficulty'), user.get('currentStageIndex'));
         var weatherLayer = WeatherLayer.init(0, -screenLayer.y, defaultWeather);
         screenLayer.addChild(weatherLayer);
+        screenLayer.getWeather = function() {
+            return weatherLayer.getWeather();
+        };
 
 		// map 
 		var map = MapManager.createMap(mapName);

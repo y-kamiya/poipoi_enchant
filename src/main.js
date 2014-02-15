@@ -18,6 +18,7 @@ window.onload = function() {
         , poipoi.imgPaths['home_button']
         , poipoi.imgPaths['egg_bg']
         , poipoi.imgPaths['egg_bg_func']
+        , poipoi.imgPaths['egg_playing']
         , poipoi.imgPaths['earth_tile']
         , poipoi.imgPaths['program_white_board']
         , poipoi.imgPaths['player_clear']
