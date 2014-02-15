@@ -4,16 +4,15 @@ var PlayerLayer = (function PlayerLayer() {
         my = {};
 
     that.init = function init(objectData) {
-        var game = enchant.Game.instance,
-            playerLayer = new Group(),
-            player = Player.initByObjectData('player_walk', objectData);
-
+        var game = enchant.Game.instance;
+        var playerLayer = new Group();
+        
+        var player = Player.initByObjectData('player_walk', objectData);
         playerLayer.addChild(player);
-
-        player.on(enchant.Event.TOUCH_START, function() {
-            var event = new enchant.Event(poipoi.event.actionStart);
-            playerLayer.dispatchEvent(event);
-        });
+        my.bindTauchStartEvent(player, playerLayer);
+        
+        var clickPanel = ClickPanel.initByObjectData('click', objectData);
+        playerLayer.addChild(clickPanel);
 
         var doActionList = function doActionList(actionList) {
             _.each(actionList, function(action) {
@@ -22,7 +21,7 @@ var PlayerLayer = (function PlayerLayer() {
                 });
             });
         };
-
+        
         var notClear = function notClear(enemyLayer) {
             // display panel
             var notClearSpr = new Sprite(poipoi.NOT_CLEAR_PANEL.WIDTH, poipoi.NOT_CLEAR_PANEL.HEIGHT);
@@ -45,6 +44,7 @@ var PlayerLayer = (function PlayerLayer() {
                     playerLayer.removeChild(notClearSpr); 
                     playerLayer.removeChild(playerFail); 
                     player.tl.show();
+                    clickPanel.action();
                     enemyLayer.reset();
                 },
             });
@@ -78,11 +78,19 @@ var PlayerLayer = (function PlayerLayer() {
 
         return _.extend(playerLayer, {
             player         : player,
+            clickPanel     : clickPanel,
 
             // methods
             doActionList   : doActionList,
             notClear       : notClear,
             clear          : clear,
+        });
+    };
+    
+    my.bindTauchStartEvent = function bindTauchStartEvent(sprite, dispatcher) {
+        sprite.on(enchant.Event.TOUCH_START, function() {
+            var event = new enchant.Event(poipoi.event.actionStart);
+            dispatcher.dispatchEvent(event);
         });
     };
 

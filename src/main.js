@@ -25,6 +25,7 @@ window.onload = function() {
         , poipoi.imgPaths['player_false']
         , poipoi.imgPaths['player_walk']
         , poipoi.imgPaths['worm']
+        , poipoi.imgPaths['click']
         , poipoi.imgPaths['clear']
         , poipoi.imgPaths['not_clear']
         , poipoi.imgPaths['goal']
