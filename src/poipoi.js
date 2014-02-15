@@ -35,6 +35,7 @@ var poipoi = (function(){
         'home_button'           : that.imgDir.gameScene + 'home_button.png',
         'egg_bg'                : that.imgDir.egg + 'egg_bg.png',
         'egg_bg_func'           : that.imgDir.egg + 'egg_bg_func.png',
+        'egg_playing'           : that.imgDir.egg + 'egg_playing.png',
         'program_white_board'   : that.imgDir.programBoard + 'program_white_board.png',
         'earth_tile'            : that.imgDir.map + 'earth.png',
         'player_clear'          : that.imgDir.chara + 'hiyoko_clear.png',

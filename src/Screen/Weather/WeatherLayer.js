@@ -19,6 +19,10 @@ var WeatherLayer = (function(){
         group.cloudSprSize = {'width':621, 'height':128};
         group.sunSprSize = {'width':747, 'height':705};
 
+        group.getWeather = function() {
+            return weather;
+        };
+
         my.setBackGround = function(game, group, weather) {
             var sky = new Entity();
             sky.width = poipoi.gameSize.width;
