@@ -1,0 +1,13 @@
+{
+  "name": "PoiPoi-Programing",
+  "description": "プログラムミングの概念を学べるゲーム",
+  "version": "0.1",
+  "manifest_version": 2,
+  "app": {
+    "background": {
+        "scripts": [
+            "chromeApp.js"
+        ]
+    }
+  }
+}

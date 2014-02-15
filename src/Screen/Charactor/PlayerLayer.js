@@ -6,7 +6,7 @@ var PlayerLayer = (function PlayerLayer() {
     that.init = function init(objectData) {
         var game = enchant.Game.instance,
             playerLayer = new Group(),
-            player = Player.initByObjectData('player_walk01', objectData);
+            player = Player.initByObjectData('player_walk', objectData);
 
         playerLayer.addChild(player);
 
@@ -32,11 +32,11 @@ var PlayerLayer = (function PlayerLayer() {
 
             // player animation
             var position = { x: player.x, y: player.y };
-            playerFail = Player.init('player_false01', position);
+            playerFail = Player.init('player_false', position);
 
             playerLayer.tl.cue({
                 0 : function() { 
-                    player.tl.hide(); 
+                    player.tl.clear().hide(); 
                     player.reset(); 
                     playerLayer.addChild(notClearSpr); 
                     playerLayer.addChild(playerFail); 
@@ -59,7 +59,7 @@ var PlayerLayer = (function PlayerLayer() {
 
             // player animation
             var position = { x: player.x, y: player.y };
-            playerSuccess = Player.init('player_clear01', position);
+            playerSuccess = Player.init('player_clear', position);
 
             playerLayer.tl.cue({
                 0 : function() { 

@@ -7,16 +7,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <script type="text/javascript" src="lib/underscore-min.js"></script>
     <script type="text/javascript" src="lib/store.min.js"></script>
-    <script>
-        // check for store.js
-        init()
-        function init() {
-            if (!store.enabled) {
-                alert('Local storage is not supported by your browser. Please disabled "Private Mode", or upgrade to a modern browser');
-                return
-            }
-        }
-    </script>
+    <script type="text/javascript" src="lib/check-store.js"></script>
     <script type="text/javascript" src="../build/enchant.js"></script>
     <script type="text/javascript" src="poipoi.js"></script>
     <script type="text/javascript" src="main.js"></script>
@@ -25,6 +16,7 @@
     <script type="text/javascript" src="PoipoiBoard/ControlLayer/JobQueueCompiler.js"></script>
     <script type="text/javascript" src="PoipoiBoard/CommandLayer/CommandLayer.js"></script>
     <script type="text/javascript" src="PoipoiBoard/JobLayer/JobFrame.js"></script>
+    <script type="text/javascript" src="PoipoiBoard/JobLayer/JobFlash.js"></script>
     <script type="text/javascript" src="PoipoiBoard/JobLayer/JobLayer.js"></script>
     <script type="text/javascript" src="ProgramBoard/ProgramLayer.js"></script>
     <script type="text/javascript" src="Scene/TitleScene.js"></script>

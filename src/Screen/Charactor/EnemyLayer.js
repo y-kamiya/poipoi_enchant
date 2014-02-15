@@ -11,7 +11,7 @@ var EnemyLayer = (function EnemyLayer() {
         _.each(objectData, function(property) {
             var prefix = property.name.substr(0, 5);
             if (prefix === 'enemy') {
-                var enemy = Enemy.initByObjectData('enemy', objectData[property.name]);
+                var enemy = Enemy.initByObjectData('worm', objectData[property.name]);
                 enemyList.push(enemy);
                 enemyLayer.addChild(enemy);
             }

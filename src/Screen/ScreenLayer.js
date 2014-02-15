@@ -14,20 +14,23 @@ var ScreenLayer = (function ScreenLayer() {
         var defaultWeather = StageManager.getDefaultWeather(user.get('currentDifficulty'), user.get('currentStageIndex'));
         var weatherLayer = WeatherLayer.init(0, -screenLayer.y, defaultWeather);
         screenLayer.addChild(weatherLayer);
+        screenLayer.getWeather = function() {
+            return weatherLayer.getWeather();
+        };
 
 		// map 
 		var map = MapManager.createMap(mapName);
 		screenLayer.addChild(map);
 
-        // charactor
-        var playerLayer = PlayerLayer.init(map.objectData);
-        screenLayer.addChild(playerLayer);
+        var goal = Goal.initByObjectData('goal', map.objectData);
+        screenLayer.addChild(goal);
 
         var enemyLayer = EnemyLayer.init(map.objectData);
         screenLayer.addChild(enemyLayer);
 
-        var goal = Goal.initByObjectData('goal', map.objectData);
-        screenLayer.addChild(goal);
+        // charactor
+        var playerLayer = PlayerLayer.init(map.objectData);
+        screenLayer.addChild(playerLayer);
 
 
         return _.extend(screenLayer, {

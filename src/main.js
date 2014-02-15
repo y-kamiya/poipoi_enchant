@@ -18,14 +18,13 @@ window.onload = function() {
         , poipoi.imgPaths['home_button']
         , poipoi.imgPaths['egg_bg']
         , poipoi.imgPaths['egg_bg_func']
+        , poipoi.imgPaths['egg_playing']
         , poipoi.imgPaths['earth_tile']
         , poipoi.imgPaths['program_white_board']
-        , poipoi.imgPaths['player_clear01']
-        , poipoi.imgPaths['player_false01']
-        , poipoi.imgPaths['player_walk01']
-        , poipoi.imgPaths['player_walk02']
-        , poipoi.imgPaths['player_walk03']
-        , poipoi.imgPaths['enemy']
+        , poipoi.imgPaths['player_clear']
+        , poipoi.imgPaths['player_false']
+        , poipoi.imgPaths['player_walk']
+        , poipoi.imgPaths['worm']
         , poipoi.imgPaths['clear']
         , poipoi.imgPaths['not_clear']
         , poipoi.imgPaths['goal']
@@ -64,6 +63,6 @@ window.onload = function() {
     };
 
 
-    game.start();
-    //game.debug();
+    //game.start();
+    game.debug();
 };

@@ -35,18 +35,17 @@ var poipoi = (function(){
         'home_button'           : that.imgDir.gameScene + 'home_button.png',
         'egg_bg'                : that.imgDir.egg + 'egg_bg.png',
         'egg_bg_func'           : that.imgDir.egg + 'egg_bg_func.png',
+        'egg_playing'           : that.imgDir.egg + 'egg_playing.png',
         'program_white_board'   : that.imgDir.programBoard + 'program_white_board.png',
         'earth_tile'            : that.imgDir.map + 'earth.png',
-        'player_clear01'        : that.imgDir.chara + 'hiyoko_clear01.png',
-        'player_false01'        : that.imgDir.chara + 'hiyoko_false01.png',
+        'player_clear'          : that.imgDir.chara + 'hiyoko_clear.png',
+        'player_false'          : that.imgDir.chara + 'hiyoko_false.png',
         'player_end'            : that.imgDir.chara + 'hiyoko_end.png',
-        'player_walk01'         : that.imgDir.chara + 'walk01.png',
-        'player_walk02'         : that.imgDir.chara + 'walk02.png',
-        'player_walk03'         : that.imgDir.chara + 'walk03.png',
-        'enemy'                 : that.imgDir.chara + 'enemy.png',
+        'player_walk'           : that.imgDir.chara + 'hiyoko_walk.png',
+        'worm'                  : that.imgDir.chara + 'worm.png',
         'clear'                 : that.imgDir.clearMessage + 'clear.png',
         'not_clear'             : that.imgDir.clearMessage + 'not_clear.png',
-        'goal'                  : that.imgDir.gameScene + 'goal.gif',
+        'goal'                  : that.imgDir.gameScene + 'goal.png',
         'tutorial_back'         : that.imgDir.gameScene + 'tutorial_back.png',
         'finger'                : that.imgDir.poipoiBoard + 'finger.png',
         'borderHorizon'         : that.imgDir.poipoiBoard + 'border_horizon.png',
@@ -90,19 +89,19 @@ var poipoi = (function(){
 		OFFSET_Y     : 30,
 	};
 
-    that.player = {
-		width       : 200,
-		height      : 215,
+    that.PLAYER = {
+		WIDTH       : 80,
+		HEIGHT      : 86.4,
     };
 
     that.ENEMY = {
-		WIDTH       : 85,
-        HEIGHT      : 80,
+		WIDTH       : 87,
+        HEIGHT      : 81,
     };
 
     that.GOAL = {
-        WIDTH       : 175,
-        HEIGHT      : 255,
+        WIDTH       : 130.5,
+        HEIGHT      : 193.5,
     };
 
     that.SCREEN = {
