@@ -9,7 +9,6 @@ var GameScene = (function(){
             scene = new Scene(),
             group = new Group(),
             controlLayer;
-        var currentJobCount = 0;
 
         my.homeButtonSize = {'width' : 143, 'height' : 56};
         my.homeButtonPos = {'x' : 10, 'y' : 10};
@@ -42,14 +41,9 @@ var GameScene = (function(){
             scene.addChild(tutorialLayer);
 
             var doAction = function doAction(e) {
-                var job = getJobAndCountUp();
-                screenLayer.doAction(job);
-            };
-            var getJobAndCountUp = function getJobAndCountUp() {
-                var jobQueue = controlLayer.getJobQueue();
-                var job = jobQueue.compiled[currentJobCount];
-                currentJobCount++;
-                return job;
+                var weather = screenLayer.getWeather();
+                var nextJob = controlLayer.getNextJob(weather);
+                screenLayer.doAction(nextJob);
             };
             var notClear = function notClear(e) {
                 //var scene = GameScene.init();
@@ -59,17 +53,21 @@ var GameScene = (function(){
             };
             var clear = function clear(e) {
                 var user = User.init();
-                var jobQueue = controlLayer.getJobQueue();
-                user.setScore(jobQueue.compiled.length);
-
+                var jobQueueLength = controlLayer.getMainJobQueueLength();
+                user.setScore(jobQueueLength);
                 screenLayer.clear();
             };
             
             screenLayer.playerLayer.on(poipoi.event.actionStart, doAction);
+            screenLayer.playerLayer.clickPanel.on(poipoi.event.actionStart, doAction);
             screenLayer.playerLayer.player.on(poipoi.event.actionEnd, doAction);
             screenLayer.playerLayer.player.on(poipoi.event.actionNotClear, notClear);
             screenLayer.playerLayer.player.on(poipoi.event.actionClear, clear);
 
+            controlLayer.jobLayer.on('SyncJobs', function() {
+                var jobCount = controlLayer.getMainJobQueueLength;
+                screenLayer.playerLayer.clickPanel.action(jobCount);
+            });
             // set public methods
             scene.doAction = doAction;
 

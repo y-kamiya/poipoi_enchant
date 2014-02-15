@@ -1,14 +1,18 @@
 var Player = (function Player() {
 
-    var that = {},
-        my = {},
-        acions = {};
+    var that   = {};
+    var my     = {};
+    var acions = {};
+
+    // private constant
+    my.FRAME = 0.07;
 
     that.initByObjectData = function initByObjectData(imgName, objectData) {
         var initialPosition = {
             x : parseInt(objectData.player.x),
             y : parseInt(objectData.player.y),
         };
+        console.log('x: ' + initialPosition.x + ' y: ' + initialPosition.y);
         return that.init(imgName, initialPosition);
     };
 
@@ -16,23 +20,18 @@ var Player = (function Player() {
     that.init = function init(imgName, initialPosition) {
 
         var player = Charactor.init(imgName, initialPosition);
-        player.width = poipoi.player.width;
-        player.height = poipoi.player.height;
-        player.scale(0.4);
+        var uper   = _.clone(player);
+        player.width  = poipoi.PLAYER.WIDTH;
+        player.height = poipoi.PLAYER.HEIGHT;
+        
+        player.on(enchant.Event.ENTER_FRAME, function() {
+            player.frame += my.FRAME;
+        });
 
         // set public methods
         return _.extend(player, {
             doAction   : _.bind(my.doAction      , player),
-            /*
-            go         : _.bind(actions.go       , player),
-            back       : _.bind(actions.back     , player),
-            jump       : _.bind(actions.jump     , player),
-            backjump   : _.bind(actions.backjump , player),
-            down       : _.bind(actions.down     , player),
-            end        : _.bind(actions.end      , player),
-            notClear   : _.bind(actions.notClear , player),
-            clear      : _.bind(actions.clear    , player),
-           */
+            reset      : _.bind(my.reset         , player, uper),
         });
     };
 
@@ -45,26 +44,39 @@ var Player = (function Player() {
         // move charactor on screen
         actions[action].call(this);
     };
+    
+    my.reset = function reset(uper) {
+        uper.reset();
+        this.faceToRight();
+    };
 
     var actions = {
 
         go: function go() {
-            this.tl.moveBy(poipoi.MAP.TILE_WIDTH * 0.75, 0, 10)
+            var player = this;
+            this.tl.then(function() { player.faceToRight(); }).delay(10)
+                   .moveBy(poipoi.MAP.TILE_WIDTH * 0.75, 0, 10)
                    .moveBy(poipoi.MAP.TILE_WIDTH * 0.25, 0, 10)
         },
 
         back: function back() {
-            this.tl.moveBy(-poipoi.MAP.TILE_WIDTH * 0.75, 0, 10)
+            var player = this;
+            this.tl.then(function() { player.faceToLeft(); }).delay(10)
+                   .moveBy(-poipoi.MAP.TILE_WIDTH * 0.75, 0, 10)
                    .moveBy(-poipoi.MAP.TILE_WIDTH * 0.25, 0, 10)
         },
 
         goJump: function jump() {
-            this.tl.moveBy(poipoi.MAP.TILE_WIDTH * 0.75, -poipoi.MAP.TILE_HEIGHT * 1.2, 10)
+            var player = this;
+            this.tl.then(function() { player.faceToRight(); }).delay(10)
+                   .moveBy(poipoi.MAP.TILE_WIDTH * 0.75, -poipoi.MAP.TILE_HEIGHT * 1.2, 10)
                    .moveBy(poipoi.MAP.TILE_WIDTH * 0.25,  poipoi.MAP.TILE_HEIGHT * 0.2, 10)
         },
 
         backJump: function backjump() {
-            this.tl.moveBy(-poipoi.MAP.TILE_WIDTH * 0.75, -poipoi.MAP.TILE_HEIGHT * 1.2, 10)
+            var player = this;
+            this.tl.then(function() { player.faceToLeft(); }).delay(10)
+                   .moveBy(-poipoi.MAP.TILE_WIDTH * 0.75, -poipoi.MAP.TILE_HEIGHT * 1.2, 10)
                    .moveBy(-poipoi.MAP.TILE_WIDTH * 0.25,  poipoi.MAP.TILE_HEIGHT * 0.2, 10)
         },
 

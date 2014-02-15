@@ -10,7 +10,7 @@ var ControlLayer = (function() {
         var my = {};
         var game = enchant.Game.instance;
         var group = new Group();
-        my.jobQueueCompiled = [];
+        my.jobLayerStack = [];
 
         my.setBackGroundSpr = function(game, group) {
             var backGroundSpr = new Sprite(603,337);
@@ -90,18 +90,58 @@ var ControlLayer = (function() {
             };
         };
 
-        group.getJobQueue = function() {
-            var jobQueue = my.getJobQueueOrigin();
-            jobQueue.compiled = my.jobQueueCompiled;
-            return jobQueue;
+
+        group.getNextJob = function(weather) {
+            if (my.jobLayerStack.length === 0) {
+                my.jobLayerStack.unshift(jobLayer);
+                return;
+            }
+            var currentJobLayer = my.jobLayerStack[0];
+            var isUpdated = currentJobLayer.updateCurrentJobId();
+            if (!isUpdated) {
+                my.jobLayerStack.shift();
+                return group.getNextJob();
+            }
+
+            nextJob = currentJobLayer.getCurrentJob();
+            currentJobLayer.flashCurrentJob();
+
+            if (nextJob == Command.type.func1) {
+                my.jobLayerStack.unshift(jobLayerFunc1);
+                return group.getNextJob(weather);
+            }
+            if (nextJob == Command.type.func2) {
+                my.jobLayerStack.unshift(jobLayerFunc2);
+                return group.getNextJob(weather);
+            }
+            if (nextJob == Command.type.sunny) {
+                if (weather != WeatherLayer.WEATHER.SUNNY) {
+                    currentJobLayer.updateCurrentJobId();
+                }
+                return group.getNextJob(weather);
+            }
+            if (nextJob == Command.type.rainy) {
+                if (weather != WeatherLayer.WEATHER.RAINY) {
+                    currentJobLayer.updateCurrentJobId();
+                }
+                return group.getNextJob(weather);
+            }
+            return nextJob;
+        };
+
+        group.resetFlashJob = function() {
+            jobLayer.resetFlashJob();
+            jobLayerFunc1.resetFlashJob();
+            jobLayerFunc2.resetFlashJob();
+        };
+
+        group.getMainJobQueueLength = function() {
+            return jobLayer.getJobQueue().length;
         };
 
         my.syncJobs = function() {
             var jobQueueOrigin = my.getJobQueueOrigin();
             programLayer.syncJobQueueToProgramBoard(jobQueueOrigin);
-            my.jobQueueCompiled = JobQueueCompiler.compile(jobQueueOrigin);
-            console.log('my.jobQueueCompiled', my.jobQueueCompiled);
-            console.log('jobQueue : ',group.getJobQueue());
         };
 
         my.setBackGroundSpr(game, group);
@@ -124,6 +164,7 @@ var ControlLayer = (function() {
 
         // set properties
         group.jobLayer = jobLayer;
+        my.jobLayerStack.unshift(jobLayer);
 
         commandLayer.onReleaseCommand = function() {
             var commandSpr = commandLayer.getSelectedCommandSpr();
