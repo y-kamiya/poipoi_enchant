@@ -65,7 +65,7 @@ var GameScene = (function(){
             screenLayer.playerLayer.player.on(poipoi.event.actionClear, clear);
 
             controlLayer.jobLayer.on('SyncJobs', function() {
-                var jobCount = controlLayer.getJobQueue().compiled.length;
+                var jobCount = controlLayer.getMainJobQueueLength;
                 screenLayer.playerLayer.clickPanel.action(jobCount);
             });
             // set public methods
