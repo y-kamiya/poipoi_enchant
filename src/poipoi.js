@@ -42,6 +42,7 @@ var poipoi = (function(){
         'player_end'            : that.imgDir.chara + 'hiyoko_end.png',
         'player_walk'           : that.imgDir.chara + 'hiyoko_walk.png',
         'worm'                  : that.imgDir.chara + 'worm.png',
+        'click'                 : that.imgDir.chara + 'click.png',
         'clear'                 : that.imgDir.clearMessage + 'clear.png',
         'not_clear'             : that.imgDir.clearMessage + 'not_clear.png',
         'goal'                  : that.imgDir.gameScene + 'goal.png',
@@ -96,6 +97,11 @@ var poipoi = (function(){
     that.ENEMY = {
 		WIDTH       : 87,
         HEIGHT      : 81,
+    };
+    
+    that.CLICK = {
+		WIDTH       : 128,
+        HEIGHT      : 105,
     };
 
     that.GOAL = {

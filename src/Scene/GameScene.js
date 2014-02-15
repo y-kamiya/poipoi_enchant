@@ -66,10 +66,15 @@ var GameScene = (function(){
             };
             
             screenLayer.playerLayer.on(poipoi.event.actionStart, doAction);
+            screenLayer.playerLayer.clickPanel.on(poipoi.event.actionStart, doAction);
             screenLayer.playerLayer.player.on(poipoi.event.actionEnd, doAction);
             screenLayer.playerLayer.player.on(poipoi.event.actionNotClear, notClear);
             screenLayer.playerLayer.player.on(poipoi.event.actionClear, clear);
 
+            controlLayer.jobLayer.on('SyncJobs', function() {
+                var jobCount = controlLayer.getJobQueue().compiled.length;
+                screenLayer.playerLayer.clickPanel.action(jobCount);
+            });
             // set public methods
             scene.doAction = doAction;
 
