@@ -1,6 +1,5 @@
 /**
  * JobLayer
- * @link https://confluence.gree-office.net/pages/viewpage.action?pageId=105847379
  */
 var JobLayer = (function(){
     var that = {};
